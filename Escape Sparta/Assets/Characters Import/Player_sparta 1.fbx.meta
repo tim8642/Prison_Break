@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cd5320239f5f5c0488de51c5d5ac0efc
+guid: 980e021e0d5dce34090de7657ccbdf09
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable:
@@ -7,14 +7,20 @@ ModelImporter:
       74: 4868724955153054059
     second: Bone|Action
   - first:
-      74: -3624854770313002248
-    second: Bone|Idle1
+      74: 6309042937119309878
+    second: Bone|Dead
   - first:
       74: -1426727826689843681
     second: Bone|Idle2
   - first:
+      74: 655508053536163232
+    second: Bone|PlayerAction
+  - first:
       74: -318642075415289391
     second: Bone|Running
+  - first:
+      74: -7851524650481249813
+    second: Bone|Walking
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -55,7 +61,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -73,8 +79,37 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Bone|Idle1
-      takeName: Bone|Idle1
+      name: Bone|Dead
+      takeName: Bone|Dead
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 15
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Bone|Idle2
+      takeName: Bone|Idle2
       internalID: 0
       firstFrame: 0
       lastFrame: 140
@@ -102,11 +137,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Bone|Idle2
-      takeName: Bone|Idle2
+      name: Bone|PlayerAction
+      takeName: Bone|PlayerAction
       internalID: 0
       firstFrame: 0
-      lastFrame: 140
+      lastFrame: 1
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -143,6 +178,35 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Bone|Walking
+      takeName: Bone|Walking
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

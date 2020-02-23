@@ -13,7 +13,9 @@ public class Player_Movement : MonoBehaviour
     Rigidbody playerRigidbody;
     Vector3 target;
     Vector3 movement;
-    
+    public bool isDead = false;
+    bool stopAll = false;
+
 
     FloatingJoystick movementjoystick;
 
@@ -22,27 +24,45 @@ public class Player_Movement : MonoBehaviour
         anim = GetComponent<Animator>();
         playerRigidbody = GetComponent<Rigidbody>();
         movementjoystick = GameObject.FindGameObjectWithTag("GameController").GetComponent<FloatingJoystick>();
+       
     }
 
     void FixedUpdate()
     {
-        if(movementjoystick.canmove == true)
+        if (stopAll == false)
         {
-            //float h = Input.GetAxis("Horizontal");
-            //float v = Input.GetAxis("Vertical");
-            h = movementjoystick.Horizontal;
-            v = movementjoystick.Vertical;
-        }
-        else
-        {
-            h = 0f;
-            v = 0f;
-        }
+            if (isDead == true)
+            {
+                anim.SetBool("IsRunning", false);
+                anim.SetBool("IsDead", true);
+                stopAll = true;
+                h = 0f;
+                v = 0f;
+            }
+            else
+            {
+                if (movementjoystick.canmove == true)
+                {
+                    //float h = Input.GetAxis("Horizontal");
+                    //float v = Input.GetAxis("Vertical");
+                    h = movementjoystick.Horizontal;
+                    v = movementjoystick.Vertical;
+                }
+                else
+                {
+                    h = 0f;
+                    v = 0f;
+                }
 
-    
-        float step = tspeed * Time.deltaTime;
-        Turning(step);
-        Animating(h, v); 
+
+                float step = tspeed * Time.deltaTime;
+                Turning(step);
+                Animating(h, v);
+
+            }
+        }
+       
+       
 
     }
 
