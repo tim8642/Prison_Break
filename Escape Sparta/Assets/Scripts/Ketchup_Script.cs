@@ -25,7 +25,7 @@ public class Ketchup_Script : MonoBehaviour
         {
             player_stats.gotKeptchup = true;
             phil.philAwake = true;
-            Destroy(door);
+            door.SetActive(false);
             gameObject.SetActive(false);
             philText.alpha = 1f;
             Invoke("StopMessage", 4f);
