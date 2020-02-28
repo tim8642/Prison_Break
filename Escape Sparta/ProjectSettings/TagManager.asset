@@ -9,6 +9,7 @@ TagManager:
   - Door
   - Exit
   - philMessage
+  - Student
   layers:
   - Default
   - TransparentFX

@@ -9,13 +9,20 @@ public class Observer : MonoBehaviour
     bool playerInRange;
     NavMeshAgent nav;
     Officer_Movement movement;
+    Transform student;
+    bool studentInRange;
+    public Transform studentTarget;
+    public GameObject studentObject;
 
+
+   
 
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
         nav = GetComponent<NavMeshAgent>();
         movement = GetComponent<Officer_Movement>();
+        student = GameObject.FindWithTag("Student").transform;
         //nav.enabled = false;
     }
 
@@ -24,9 +31,22 @@ public class Observer : MonoBehaviour
     {
         if (other.transform == player)
         {
-            playerInRange = true;
-           
-           
+            playerInRange = true;                   
+        }
+        else if (other.transform == student)
+        {
+            if (other.GetComponent<Student_Movement>().isNowDead == false)
+            {
+                             
+                Debug.Log("student being triggered");
+                studentInRange = true;
+
+                studentTarget = other.gameObject.transform;
+                studentObject = other.gameObject;
+                
+                
+            }
+            
         }
     }
 
@@ -36,6 +56,11 @@ public class Observer : MonoBehaviour
         {
             playerInRange = false;
         }
+        //if (other.transform == student)
+       // {
+       //     studentInRange = false;
+            
+       // }
     }
 
 
@@ -55,10 +80,30 @@ public class Observer : MonoBehaviour
             {
                 if (rayCastHit.collider.transform == player)
                 {
-                    movement.turnNavOn = true;
+                    movement.NavOnPlayer = true;
+                    //nav.enabled = true;
+                }
+            }
+        }
+        else if(studentInRange == true)
+        {
+            Vector3 direction = studentTarget.position - transform.position + Vector3.up;
+            Ray ray = new Ray(transform.position, direction);
+            RaycastHit rayCastHit;
+
+            if (Physics.Raycast(ray, out rayCastHit))
+            {
+                if (rayCastHit.collider.transform == studentTarget)
+                {
+                    movement.NavOnStudent = true;
+                    
                     //nav.enabled = true;
                 }
             }
         }
     }
+
+  
+
+  
 }

@@ -14,9 +14,13 @@ public class Officer_Movement : MonoBehaviour
     CanvasGroup endText;
 
     public Transform[] waypoints;
-    public bool turnNavOn;
+    public bool NavOnPlayer;
+    public bool NavOnStudent;
     public int currentWayPointIndex;
     Player_Movement player_movement;
+    Observer observer;
+    float accuracy = 0.5f;
+   
     
 
     void Start()
@@ -31,12 +35,14 @@ public class Officer_Movement : MonoBehaviour
         nav.SetDestination(waypoints[0].position);
         endText = GameObject.FindWithTag("Finish").GetComponent<CanvasGroup>();
         player_movement = player.GetComponent<Player_Movement>();
+        
+        observer = GetComponent<Observer>();
     }
 
     
     void Update()
     {
-        if (turnNavOn == true)
+        if (NavOnPlayer == true)
         {
             nav.SetDestination(playertransform.position);
             anim.SetBool("IsWalking", false);
@@ -52,10 +58,31 @@ public class Officer_Movement : MonoBehaviour
                 Invoke("EndGame", 3f);
             }
         }
+        else if (NavOnStudent == true)
+        {
+            nav.SetDestination(observer.studentTarget.position);
+            anim.SetBool("IsWalking", false);
+            anim.SetBool("IsRunning", true);
+            anim.speed = 1f;
+            nav.speed = 5.5f;
+
+            if (nav.remainingDistance < nav.stoppingDistance + accuracy)
+            {
+                Debug.Log("hit");              
+                observer.studentObject.GetComponent<Student_Movement>().isNowDead = true;
+                NavOnStudent = false;
+               
+            }
+        }
         else
         {
             if(nav.remainingDistance < nav.stoppingDistance)
             {
+                
+                anim.SetBool("IsRunning", false);
+                anim.SetBool("IsWalking", true);
+                anim.speed = 1f;
+                nav.speed = 3f;
                 currentWayPointIndex = (currentWayPointIndex + 1) % waypoints.Length;
                 nav.SetDestination(waypoints[currentWayPointIndex].position);
                 
